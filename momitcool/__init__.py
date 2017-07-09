@@ -4,7 +4,7 @@ from .coap import CoapMessage
 class MomitCool:
     """Represents a single MomitCool device."""
 
-    def __init__(self, host: str, port: int):
+    def __init__(self, host: str, port: int=19924):
         """Initializes a new instance of the :see:MomitCool class
         with the specified host and port."""
 
@@ -30,7 +30,7 @@ class MomitCool:
         """Turns off the air-conditioning."""
 
         params = (
-            ('cm', 'cool')
+            ('cm', 'cool'),
             ('t', '0'),
             ('sp', 'off')
         )
