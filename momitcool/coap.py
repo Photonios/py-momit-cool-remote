@@ -1,11 +1,13 @@
 import sys
 import socket
 import struct
+import logging
 
 from enum import Enum
 from random import randint
 from typing import List
 
+LOGGER = logging.getLogger(__name__)
 
 COAP_DEFAULT_PORT = 5683
 
@@ -95,6 +97,13 @@ class CoapMessage:
     def send(self):
         """Sends the message to the configured destination."""
 
+        packet = self.encode()
+        LOGGER.debug('%s coap://%s:%s/%s (%d bytes)\n\n' \
+                     '%s',
+                     self.code.name, self.host, self.port,
+                     '/'.join(self.options.path), len(packet),
+                     str(self.payload))
+
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         sock.bind(('0.0.0.0', COAP_DEFAULT_PORT))
-        sock.sendto(self.encode(), (self.host, self.port))
+        sock.sendto(packet, (self.host, self.port))

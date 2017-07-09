@@ -1,9 +1,12 @@
+import logging
 import argparse
 
 from momitcool import MomitCool
 
 
 def main():
+    logging.basicConfig(level=logging.DEBUG)
+
     parser = argparse.ArgumentParser(
         description='Control your Momit Cool.')
 
@@ -22,6 +25,7 @@ def main():
         cool.on()
     else:
         cool.off()
+
 
 if __name__ == '__main__':
     main()

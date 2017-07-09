@@ -1,4 +1,8 @@
+import logging
+
 from .coap import CoapMessage
+
+LOGGER = logging.getLogger(__name__)
 
 
 class MomitCool:
@@ -14,6 +18,8 @@ class MomitCool:
     def on(self):
         """Turns on the air-conditioning."""
 
+        LOGGER.info('Turning on air-conditioning')
+
         params = (
             ('cm', 'cool'), # mode: 'cool' or 'heat'
             ('t', '1440'), # time till turn off in minutes, 24 hours
@@ -28,6 +34,8 @@ class MomitCool:
 
     def off(self):
         """Turns off the air-conditioning."""
+
+        LOGGER.info('Turning off air-conditioning')
 
         params = (
             ('cm', 'cool'),
