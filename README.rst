@@ -44,6 +44,11 @@ Example usage
     cool.on()
     cool.off()
 
+.. code-block:: bash
+
+    $ python cli.py --host 192.168.3.164 --action on
+    $ python cli.py --host 192.168.3.164 --action off
+
 References
 ----------
 
