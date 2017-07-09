@@ -6,7 +6,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
     README = readme.read()
 
 setup(
-    name='py-momit-cool-remote'
+    name='py-momit-cool-remote',
     version='1.0',
     packages=find_packages(),
     include_package_data=True,
@@ -17,6 +17,11 @@ setup(
     author='Swen Kooij',
     author_email='swenkooij@gmail.com',
     keywords=['momit', 'cool', 'remote', 'control'],
+    entry_points={
+        'console_scripts': [
+            'momit-cool=cli:main'
+        ]
+    },
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',

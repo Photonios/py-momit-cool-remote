@@ -13,6 +13,31 @@ The Momit Cool is a small device that can be attached to your AC, allowing you t
 
 ``py-momit-cool-remote`` communicates directly with the Momit Gateway, completely circumventing Momit's servers.
 
+Note: Python 3.5 and newer only.
+
+Installation
+------------
+
+.. code-block:: bash
+
+    $ pip install py-momit-cool-remote
+
+Example usage
+-------------
+
+.. code-block:: python
+
+    from momitcool import MomitCool
+
+    cool = MomitCool('192.168.3.164')
+    cool.on()
+    cool.off()
+
+.. code-block:: bash
+
+    $ momit-cool --host 192.168.3.164 --action on
+    $ momit-cool --host 192.168.3.164 --action off
+
 Details
 -------
 I uncovered most of the information by ARP poisoning and intercepting the traffic between the Momit Gateway and the Momit servers. The Momit Gateway communicates over the CoAP protocol.
@@ -32,22 +57,6 @@ I uncovered most of the information by ARP poisoning and intercepting the traffi
     PUT /10242/0/0
     Content-Format: 1541
     cm=cool,t=0,sp=off
-
-Example usage
--------------
-
-.. code-block:: python
-
-    from momitcool import MomitCool
-
-    cool = MomitCool('192.168.3.164')
-    cool.on()
-    cool.off()
-
-.. code-block:: bash
-
-    $ python cli.py --host 192.168.3.164 --action on
-    $ python cli.py --host 192.168.3.164 --action off
 
 References
 ----------

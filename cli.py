@@ -11,12 +11,12 @@ def main():
         description='Control your Momit Cool.')
 
     parser.add_argument(
-        '--host', type=str, help='ip address of your momit cool.')
+        '--host', type=str, required=True,
+        help='ip address of your momit cool.')
 
     parser.add_argument(
         '--action', type=str, choices=['on', 'off'],
-        help='the action to perform'
-    )
+        required=True, help='the action to perform')
 
     args = parser.parse_args()
 
