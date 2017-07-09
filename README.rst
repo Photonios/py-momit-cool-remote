@@ -43,3 +43,10 @@ Example usage
     cool = MomitCool('192.168.3.164')
     cool.on()
     cool.off()
+
+References
+----------
+
+* https://www.momit.com/en-us/products/cool
+* https://github.com/smikims/arpspoof
+* http://coap.technology/
