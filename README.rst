@@ -40,7 +40,7 @@ Example usage
 
 Details
 -------
-I uncovered most of the information by ARP poisoning and intercepting the traffic between the Momit Gateway and the Momit servers. The Momit Gateway communicates over the CoAP protocol.
+The Momit Cool is a commercial, closed source product that does not have any documentation on how communication is performed. All of the information provided in this repository was found by reverse engineering the protocol. I uncovered most of the information by ARP poisoning and intercepting the traffic between the Momit Gateway and the Momit servers. The Momit Gateway communicates over the CoAP protocol.
 
 **Turning on**
 
