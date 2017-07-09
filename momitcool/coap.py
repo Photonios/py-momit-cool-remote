@@ -85,7 +85,6 @@ class CoapMessage:
         token = struct.pack('I', randint(0, 0xffffffff)) # maxmium value of uint
 
         request_buffer = b'\x44'
-        # request_buffer += struct.pack('B', token_length)
         request_buffer += struct.pack('B', self.code.value)
         request_buffer += struct.pack('H', randint(0x0, message_id))
         request_buffer += token
