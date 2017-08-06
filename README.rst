@@ -30,13 +30,17 @@ Example usage
     from momitcool import MomitCool
 
     cool = MomitCool('192.168.3.164')
-    cool.on()
-    cool.off()
+    cool.cool() # turn on in cooling mode
+    cool.off() # turn off
+    cool.temperature() # get current temperature
+    cool.mode() # cooling/heating/off
 
 .. code-block:: bash
 
-    $ momit-cool --host 192.168.3.164 --action on
-    $ momit-cool --host 192.168.3.164 --action off
+    $ momit-cool --host 192.168.3.164 --cool
+    $ momit-cool --host 192.168.3.164 --off
+    $ momit-cool --host 192.168.3.164 --temperature
+    $ momit-cool --host 192.168.3.164 --mode
 
 Details
 -------
