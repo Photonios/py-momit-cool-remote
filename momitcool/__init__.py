@@ -1,29 +1,59 @@
+import socket
 import logging
 
-from .coap import CoapMessage
+from enum import Enum
+
+from .coap import CoapMessage, CoapCode
 
 LOGGER = logging.getLogger(__name__)
+
+
+class MomitCoolMode(Enum):
+    COOL = 'cool'
+    HEAT = 'heat'
+    OFF = 'off'
+    UNKNOWN = '?'
 
 
 class MomitCool:
     """Represents a single MomitCool device."""
 
-    def __init__(self, host: str, port: int=19924):
+    def __init__(self, host: str):
         """Initializes a new instance of the :see:MomitCool class
-        with the specified host and port."""
+        with the specified host."""
 
         self.host = host
-        self.port = port
+        self.port = 17062
 
-    def on(self):
-        """Turns on the air-conditioning."""
+    def mode(self):
+        """Gets whether the air-conditioning mode."""
 
-        LOGGER.info('Turning on air-conditioning')
+        message = CoapMessage(host=self.host, port=self.port, code=CoapCode.GET)
+        message.options.path = ['10242', '0', '0']
+        message.options.content_format = 1541
+        response = message.send()
+
+        parameters = self._decode_parameters(response.payload)
+        return MomitCoolMode(parameters.get('out'))
+
+    def temperature(self):
+        message = CoapMessage(host=self.host, port=self.port, code=CoapCode.GET)
+        message.options.path = ['10241', '0', '0']
+        message.options.content_format = 1541
+        response = message.send()
+
+        temperature, _ = response.payload.decode().split(',', 1)
+        return int(temperature) / 10
+
+    def cool(self):
+        """Turns on the air-conditioning in cooling mode."""
+
+        LOGGER.info('Turning on air-conditioning in cooling mode')
 
         params = (
             ('cm', 'cool'), # mode: 'cool' or 'heat'
             ('t', '1440'), # time till turn off in minutes, 24 hours
-            ('sp', '0'), # target temperature, 290 = 29.0C
+            ('sp', '15'), # target temperature, 290 = 29.0C
         )
 
         message = CoapMessage(host=self.host, port=self.port)
@@ -58,3 +88,15 @@ class MomitCool:
         ])
 
         return result.encode()
+
+    def _decode_parameters(self, payload):
+        """Decodes parameters from a message."""
+
+        parameters = dict()
+        pairs = payload.decode().split(',')
+
+        for pair in pairs:
+            key, value = pair.split('=', 2)
+            parameters[key] = value
+
+        return parameters
