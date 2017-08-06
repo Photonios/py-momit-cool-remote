@@ -1,8 +1,10 @@
 .. image:: https://img.shields.io/:license-mit-blue.svg
     :target: http://doge.mit-license.org
-
-.. image:: https://badge.fury.io/py/py-momit-cool-remote
+    :align: left
+    
+.. image:: https://badge.fury.io/py/py-momit-cool-remote.svg
     :target: https://pypi.python.org/pypi/py-momit-cool-remote
+    :align: left
 
 ``py-momit-cool-remote`` is a Python 3 library for remotely controlling your air conditioning unit through the use of the Momit Cool.
 
