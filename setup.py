@@ -19,7 +19,7 @@ setup(
     keywords=['momit', 'cool', 'remote', 'control'],
     entry_points={
         'console_scripts': [
-            'momit-cool=cli:main'
+            'momit-cool=momitcool.cli:main'
         ]
     },
     classifiers=[
