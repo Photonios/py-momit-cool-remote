@@ -9,7 +9,7 @@
 
 ``py-momit-cool-remote`` is a Python 3 library for remotely controlling your air conditioning unit through the use of the Momit Cool.
 
-The Momit Cool is a small device that can be attached to your AC, allowing you to control it from your smart phone. In order to accomplish remote control from anywhere, commands are sent to their central server, which then sends them to your Momit Gateway device.  ``py-momit-cool-remote`` communicates directly with the Momit Gateway, completely circumventing Momit's servers.
+The Momit Cool is a small device that can be attached to your AC, allowing you to control it from your smart phone. In order to accomplish remote control from anywhere, commands are sent to their central server, which then sends them to your Momit Gateway device. ``py-momit-cool-remote`` communicates directly with the Momit Gateway, completely circumventing Momit's servers.
 
 https://www.momit.com/en-ro/products/cool
 
@@ -21,6 +21,8 @@ Installation
 .. code-block:: bash
 
     $ pip install py-momit-cool-remote
+
+Make sure that ``pip`` refers to the ``pip`` installation for Python 3. You might have to install the package using ``pip3``.
 
 Example usage
 -------------
